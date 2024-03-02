@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EcommerceController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\Auth\SMSLoginController;
 use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Route;
 
@@ -33,6 +34,7 @@ Route::post('/cart/add/{id}',[CartController::class, 'AddCart'])->name('cart.add
 Route::get('/cart/count', [CartController::class, 'getCartCount'])->name('cart.count');
 Route::get('checkout/{id}', [CartController::class, 'checkOut'])->name('checkout');
 Route::post('/cart/remove/{id}', [CartController::class, 'removeFromCart'])->name('cart.remove');
+Route::post('/sms-login', [SMSLoginController::class, 'login'])->name('login');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

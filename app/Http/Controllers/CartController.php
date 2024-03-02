@@ -62,7 +62,7 @@ class CartController extends Controller
         if (!$product) {
             return response()->json(['status' => 'error', 'message' => 'Product not found.']);
         }
-        return view('checkout')->with('product', $product);
+        return view('sms-login')->with('product', $product);
     }
 
     /**

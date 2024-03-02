@@ -12,11 +12,11 @@ class SMSLoginController extends Controller
 {
     use AuthenticatesUsers;
 
-    protected $redirectTo = '/home'; 
+    protected $redirectTo = '/checkout'; 
 
     public function showLoginForm()
     {
-        return view('auth.sms-login');
+        return view('sms-login');
     }
 
     public function login(Request $request)
@@ -39,7 +39,6 @@ class SMSLoginController extends Controller
         $otp = session('otp');
         if ($request->otp == $otp) {
             Auth::loginUsingId(1); 
-            
             return redirect($this->redirectTo);
         } else {
             return redirect()->back()->withErrors(['otp' => 'Invalid OTP entered.']);
