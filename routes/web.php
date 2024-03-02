@@ -31,7 +31,7 @@ Route::get('/contact',[EcommerceController::class, 'contact'])->name('contact');
 Route::get('/cart',[CartController::class, 'cart'])->name('cart');
 Route::post('/cart/add/{id}',[CartController::class, 'AddCart'])->name('cart.add');
 Route::get('/cart/count', [CartController::class, 'getCartCount'])->name('cart.count');
-Route::get('/checkout', [CartController::class, 'checkOut'])->name('checkout');
+Route::get('checkout/{id}', [CartController::class, 'checkOut'])->name('checkout');
 Route::post('/cart/remove/{id}', [CartController::class, 'removeFromCart'])->name('cart.remove');
 
 Route::middleware('auth')->group(function () {
@@ -40,5 +40,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::post('/add', [ProductController::class, 'store'])->name('product.store');
 });
+Route::get('/user-login', [SMSLoginController::class, 'checkOut']);
 
 require __DIR__.'/auth.php';

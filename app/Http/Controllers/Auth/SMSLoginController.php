@@ -24,30 +24,19 @@ class SMSLoginController extends Controller
         $request->validate([
             'phone_number' => 'required|numeric'
         ]);
-
-        // Generate OTP (4 or 6 digit code)
-        $otp = mt_rand(1000, 9999); // Change according to your OTP length
-
-        // Send OTP via SMS
+        $otp = mt_rand(1000, 9999); 
         $this->sendOTP($request->phone_number, $otp);
-
-        // Store OTP in session for verification
         session(['otp' => $otp]);
         session(['phone_number' => $request->phone_number]);
-
         return view('auth.verify-otp');
     }
 
-    // Verify OTP entered by the user
     public function verifyOTP(Request $request)
     {
         $request->validate([
             'otp' => 'required|numeric'
         ]);
-
-        // Retrieve OTP from session
         $otp = session('otp');
-
         if ($request->otp == $otp) {
             Auth::loginUsingId(1); 
             

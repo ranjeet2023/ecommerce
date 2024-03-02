@@ -12,6 +12,7 @@
                                 <th class="product-name">Product</th>
                                 <th class="product-price">Price</th>
                                 <th class="product-remove">Remove</th>
+                                <th class="product-checkout">Checkout</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -30,33 +31,27 @@
                                             <div href="#" class="btn btn-black remove-from-cart-btn btn-sm"
                                                 data-product-id="{{ $product->id }}">X</div>
                                         </td>
+                                        <td>
+                                            <a href="{{ route('checkout', ['id' => $product->id]) }}"
+                                                class="btn btn-outline">Checkout</a>
+                                            Proceed To Checkout
+                                            </a>
+                                            </button>
+                                        </td>
                                     </tr>
                                 @endforeach
                             @else
-                                <p>Your cart is empty.</p>
+                                <tr>
+                                    <td colspan="5">
+                                        <p>Your cart is empty.</p>
+                                    </td>
+                                </tr>
                             @endif
                         </tbody>
                     </table>
                 </div>
             </form>
         </div>
-
-        <div class="row">
-            <div class="col-md-12 pl-5">
-                <div class="row justify-content-end">
-                    <div class="col-md-7">
-                        <div class="row">
-                            <div class="col-md-12 float-end">
-                                <a href="{{ route('checkout') }}">
-                                    <button class="btn btn-black btn-lg py-3 btn-block">Proceed To Checkout</button>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
     </div>
 </div>
 

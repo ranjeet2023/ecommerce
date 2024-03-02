@@ -56,9 +56,13 @@ class CartController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function checkOut()
+    public function checkOut( $id)
     {
-        return view('checkout');
+        $product = Product::find($id);
+        if (!$product) {
+            return response()->json(['status' => 'error', 'message' => 'Product not found.']);
+        }
+        return view('checkout')->with('product', $product);
     }
 
     /**
